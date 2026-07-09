@@ -1,0 +1,108 @@
+MULTYLAYER PERCEPTRON: PROJET DE MACHINE LEARNING POUR APPRENDRE L'IMPLEMENTATION DES RESEAUX DE NEURONES
+
+
+qu'est ce que un reseaux de neurones?
+
+=> c'est un type d'algorithme utilise en machine learning, qui vise a
+simuler le comportement du cerveau humain grace a des neurones aritificiels interconnectes entre eux, organises
+en plusieurs couches
+
+
+en quoi les reseaux de neurones sont differents du machine learning classique?
+
+=> ils sont typiquements differents car ce sont des algorithme penses pour que le modele puisse s'ameliorer
+tout seul sans l'intervention d'un humain, les modeles apprennent directement depuis les donnes qu'on leur donne,
+
+dans le machine learning classique les features sont donnes a la main 
+
+
+Comment ca marche?
+
+=> chaque neurone represente une unite de compilation qui prend des inputs, fait des calculs basees sur ces inputs
+et donne son output au prochain neurone qui va faire la meme chose, jusqu'a avoir un output.
+Pendant que les donnes parcourent le reseaux, les connections entre les neurones se renforcent ou s'affaiblissent
+par rapport aux patterns presents dans les donnees
+
+
+poids => en machine learning en generale, un poids et l'importance que une certaine feature possede par rapport a
+une prediction 
+
+biais => constante donne a une formule pour decaler le resultat et empecher le modele de passer par l'origine
+ce qui va polluer les sessions d'entrainement
+
+
+Qu'est ce que le forward propagation?
+
+=> c'est le process par lequel les donnes recues en input sont  traites dans le reseaux de neurones
+pour generer un output finale
+le output de chaque neurones dans chaque couche est processe en appliquant les poids et les biais aux inputs recus 
+et puis en appliquant une fonction d'activation (sigmoide (voir le projet DSLR))
+
+
+Qu'est ce que le back propagation?
+
+=> c'est un algorithme tres utilise en machine learning, il calcule le gradient de descente de la fonction de perte
+ce qui va permettre de regler les poids et d'avoir un entrainement plus pertinant et des predictions plus precises 
+
+
+
+chaque noeud a une valeur numerique, pour construire un reseaux on a besoin de plusieurs noeuds
+on connecte les noeuds entre eux en utilisant des poids, la somme de la multiplication entre les valeurs dun noeud et
+son poids donne une valeur au prochain noeud
+
+---------------------------------|
+EXEMPLE:                         |
+noed1 = 3, poids1 = 4            |
+noed2 = 2, poids2 = 8            |
+                                 |
+noed3 = (3 * 4) + (2 * 8) = 28   |
+ -> = 28                         |
+---------------------------------|
+
+
+UNE COUCHE DANS UN RESEAUX A 4 REGLES:
+
+chaque noeud d'une couche, doit etre connecte a chaque noeud de la couche suivante, et les connections sont apelles des poids
+
+chaque poids est valeur random predetermine (que au debut), on ne connait pas la valeur des noeuds  a part les noeuds dans la
+couche input
+
+seulement la premiere couche de noeuds (couche input) commence avec des valeurs
+
+touts les autres noeud du reseaux ont une valeur qui a ete calcule grace aux valeurs des couches d'avant et leur poids
+
+
+LES ETAPES POUR CREER UN RESEAUX DE NEURONES
+
+1-> tu donnes la data a traiter a la premiere couche (la couche input), puis le reseaux utilise cette data + les poids
+de chaque noed pour donner une valeur aux noeud dans les couches suivantes et ainsi de suivante
+
+2-> ce process se propage dans chaque noed jusqu a chaque noed dans le reseaux a une valeur 
+
+3-> la derniere couche nous donnera la prediction du modele, ensuite on va comparer cette prediction aux vraies valeurs
+et on va appliquer la fonction de cout pour avoir une constante cout pour le reseaux
+
+4-> grace a ce cout on va pouvoir applique la descente de gradient et modifier les poids et les biais
+
+5-> repeter etapes 1-4 jusqua a avoir le plus petit cout possible
+
+
+lorsque on travaille avec des couches il est essentiel de savori combien de couches et combien de noueds nous avons
+
+on commence a compter a partir du premier "hidden layer" (couche/s entre les couches input et ouput qui s'occupent de faire
+touts les calculs) jusqua la couche output
+
+on represente les couches (layers en anglais) avec la variable L 
+
+on exclu la couche input car ce sont seulement des donnes crues et non pas des calculs
+
+
+pour compter les nombres de noeuds ont utilise la variable n avec un exposant, cet exposant va etre l'index de la couche
+
+immaginons que nous avons un reseaux avec L= 3 (couche input + 2 hidden layers + couche output)
+
+la couche input elle a 2 noeuds, les hiddens layer elles ont 3 et la couche output 1 seul
+
+donc n ^ 0 = 2, n ^ 1 = 3, n ^ 2 = 3, n ^ 3 = 1
+
+
