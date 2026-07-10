@@ -106,3 +106,19 @@ la couche input elle a 2 noeuds, les hiddens layer elles ont 3 et la couche outp
 donc n ^ 0 = 2, n ^ 1 = 3, n ^ 2 = 3, n ^ 3 = 1
 
 
+pour calculer le nombre de poids entre une couche et une autre on a juste a faire n ^ l * n ^ l - 1
+
+mais c'est tres facile de se perdre lorsque on a bcp de noeuds et de poids, donc la meilleure facon de calculer ca c'est d'
+utiliser des matrices
+
+ce qui'il faut faire:
+
+representer chaque couche comme une matrice 
+representer chaque set de poids entre deux couches comme une matrices
+faire le calcul des matrices 
+
+
+Qu'est ce que le Feed forward?
+
+-> le feed forward est le fait de calculer la valeur de chaque noed dans chaque couche, jusqu'a arriver a la couche output
+
