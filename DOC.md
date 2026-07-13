@@ -122,3 +122,23 @@ Qu'est ce que le Feed forward?
 
 -> le feed forward est le fait de calculer la valeur de chaque noed dans chaque couche, jusqu'a arriver a la couche output
 
+
+
+EXPLORATION DES donnees
+
+le data set, decrit les caracteristiques de celulles cancereuses
+
+il y a 32 colonnes et 569 lignes
+
+
+dans le dataset donne dans le sujet on a pas de headers pour les colonnes, suite a une recherche sur UCI machine learning repository
+on a trouve le dataset: breast cancer Wisconsin (diagnostic) qui correpond au dataset donne dans le sujet
+
+a partir de la on a donc pu trouver les noms des colonnes dans le dataset
+
+qui sont:
+
+![alt text](<immages/Screenshot 2026-07-13 144908.png>) 
+![alt text](<immages/Screenshot 2026-07-13 144923.png>) 
+![alt text](<immages/Screenshot 2026-07-13 144934.png>) 
+![alt text](<immages/Screenshot 2026-07-13 144947.png>)
