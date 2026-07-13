@@ -142,3 +142,44 @@ qui sont:
 ![alt text](<immages/Screenshot 2026-07-13 144923.png>) 
 ![alt text](<immages/Screenshot 2026-07-13 144934.png>) 
 ![alt text](<immages/Screenshot 2026-07-13 144947.png>)
+
+
+ici on peut donc voir que chaque ligne represente une cellule tumorale observe au microscope et les colonnes contiennent des
+mesures extraites a partir des immages des cellules
+
+le but du dataset est de predire si la cellule est B (begnin) ou M (malign)
+
+EXPLORATION DES COLONNES:
+
+1) la premiere colonne represente l'ID de la cellule (cette information ne va pas etre tres utile a l'entrainement du modele car
+elle possede aucune information medicale)
+
+2) cette colonne represente le diagnostic de la cellule (B/M), c'est donc la variable que l'on veut predire, en machine learning
+on transforme souvent ce genre de de labels en binary_values donc 0 ou 1 (par exemple B = 0 et M = 1)
+
+3) a partir de cette colonne jusqu'a la colonne 32 nous avons les caracteristiqued des cellules, cependant nous avons que 10
+caracteristiques reelles calcules pour chaque noyau de cellule
+
+qui sont:
+
+radius
+texture
+perimeter
+area
+smoothness
+compactness
+concavity
+concave points
+symmetry
+fractal dimension
+
+mais ces 10 caracteristiques sont calcules chacune 3 fois pour calculer:
+
+la moyenne (mean), l'erreur standard (standard error) et la valeur maximale (worst)
+
+donc 10 * 3 = 30
+
+le sujet nous dit que on ne devrait pas donner les donnees brutes du dataset au model, ceci s'expliques par les ecarts entre les mesures
+qui vont causer un mauvais entrainement pour regler ce probleme on doit proceder a une normalisation des donnes pour eviter tout type d'ecart
+trop important
+
