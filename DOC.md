@@ -154,24 +154,23 @@ EXPLORATION DES COLONNES:
 1) la premiere colonne represente l'ID de la cellule (cette information ne va pas etre tres utile a l'entrainement du modele car
 elle possede aucune information medicale)
 
-2) cette colonne represente le diagnostic de la cellule (B/M), c'est donc la variable que l'on veut predire, en machine learning
-on transforme souvent ce genre de de labels en binary_values donc 0 ou 1 (par exemple B = 0 et M = 1)
+2) cette colonne represente le diagnostic de la cellule (B/M), c'est donc la variable que l'on veut predire
 
 3) a partir de cette colonne jusqu'a la colonne 32 nous avons les caracteristiqued des cellules, cependant nous avons que 10
 caracteristiques reelles calcules pour chaque noyau de cellule
 
 qui sont:
 
-radius
-texture
-perimeter
-area
-smoothness
-compactness
-concavity
-concave points
-symmetry
-fractal dimension
+radius,
+texture,
+perimeter,
+area,
+smoothness,
+compactness,
+concavity,
+concave points,
+symmetry,
+fractal dimension.
 
 mais ces 10 caracteristiques sont calcules chacune 3 fois pour calculer:
 
@@ -181,5 +180,71 @@ donc 10 * 3 = 30
 
 le sujet nous dit que on ne devrait pas donner les donnees brutes du dataset au model, ceci s'expliques par les ecarts entre les mesures
 qui vont causer un mauvais entrainement pour regler ce probleme on doit proceder a une normalisation des donnes pour eviter tout type d'ecart
-trop important
+trop important, pour ce type de dataset une normalisation de type z-score est meilleure car on connait pas les extremees biologiques pour un min/max
 
+et aussi on a des donnes avec des distributions basees sur les moyennes et les dispersions
+
+
+
+pour eviter le data leakage, nous devions pas appliquer la normalisation sur tout le dataset mais seulement sur la partie train, sinon le modele va avoir
+acces a des informations qu'il ne devrait pas avoir pendant la phase de training ce qui va causer du data leakage
+
+
+QU'EST CE QUE LA FONCTION SOFTMAX?
+
+la fonction softmax est une fonction mathematique utilise a la sortie d'un reseau de neurones pour produire une serie de probabilite dont la somme font 1,
+le reseaux en sortie produit des nombres que on peut pas trop interpreter (positifs, negatifs, a virgule etc etc...), pour pouvoir les interpreter nous allons
+appliquer la fonction softmax
+
+Exemple simple
+
+Imaginons un réseau qui doit reconnaître un animal parmi 3 classes :
+
+Chat
+Chien
+Oiseau
+
+Avant le softmax, le réseau produit :
+
+Classe	Score (logit)
+Chat	2.3
+Chien	1.1
+Oiseau	-0.7
+
+Ces nombres ne veulent pas dire grand-chose.
+
+Après le softmax, on obtient :
+
+Classe	Probabilité
+Chat	74 %
+Chien	22 %
+Oiseau	4 %
+
+Maintenant les résultats sont interprétables.
+
+
+
+
+comme nous devons appliquer la fonction softmax sur le layer output, on ne peut pas avoir un seul neurone en sortie car une probabilite sur un seul element
+n'as pas de sens, donc ce qu'il faut faire c'est de faire en sorte a ce que le layer d'output soit compose de 2 neurones
+
+donc comme on ne peut pas avoir un encodage binaire classique pour la colonne des diagnostic (B = 0 && M = 1), car notre output avec softmax est un vecteur
+de dimensions 2 [0.73, 0.27] par exemple, et la fonction de cout a besoin d'un vecteur a 2 dimensions alle aussi, donc on peut pas lui donner un 0 ou un 1
+donc nous devons les encoder d'une autre maniere a fin de faire comprendre nos donnes a notre modele, c'est ici que on va appliquer le one-hot encoding
+
+
+
+QU'EST CE QUE LE ONE-HOT ENCODING?
+
+c'est la solution a nos soucis, a la place de encoder la classe comme un entier (0 ou 1) on la transforme en vecteur, avec tant de dimensions que de classes,
+ou une seule composante vaut 1 et le reste valent 0
+
+par exemple:
+
+B -> [1, 0]
+M -> [0, 1]
+
+
+EXPLORATION DES DONNES
+
+nombre des M  = 212, nombre des B = 357, 
