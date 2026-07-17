@@ -247,4 +247,24 @@ M -> [0, 1]
 
 EXPLORATION DES DONNES
 
-nombre des M  = 212, nombre des B = 357, 
+nombre des M  = 212, nombre des B = 357,
+
+suite a un .describe() nous pouvons constater un grand ecart entre certaines donnes, ce qui justifie la normalisation
+
+area1 mean = 654.8 | smoothness1 mean = 0.09 => ecart trop grand, ca va fausser les entrainements
+
+features significatives:
+
+radius1
+perimeter1
+area1
+compactness1
+concavity1
+concave_points1
+
+
+a revoir:
+texture1
+smoothness1
+symmetry1
+fractal_dimension1
